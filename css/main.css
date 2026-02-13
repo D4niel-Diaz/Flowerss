@@ -4,6 +4,10 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 :root {
@@ -103,6 +107,11 @@ background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4
   border-radius: 50%;
   box-shadow: 0 0 15px #ffff00, 0 0 30px #ffeb3b, 0 0 45px #ffc107;
   opacity: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .firefly--21 {
@@ -629,6 +638,10 @@ background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4
   z-index: 5;
   cursor: pointer;
   transition: transform 0.3s ease;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .vase:hover {
@@ -746,6 +759,11 @@ background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4
   transform-origin: bottom center;
   z-index: 10;
   --fl-speed: 0.8s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .flower--1 {
@@ -772,16 +790,82 @@ background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4
 .flower--4 {
   left: 50%;
   transform: translateX(4vmin) scale(0.65) rotate(8deg);
+  -webkit-animation: moving-flower-4 4s linear infinite;
+  animation: moving-flower-4 4s linear infinite;
+}
+
+@-webkit-keyframes moving-flower-4 {
+  0%,
+  100% {
+    transform: translateX(4vmin) scale(0.65) rotate(8deg);
+  }
+  50% {
+    transform: translateX(4vmin) scale(0.65) rotate(12deg);
+  }
+}
+
+@keyframes moving-flower-4 {
+  0%,
+  100% {
+    transform: translateX(4vmin) scale(0.65) rotate(8deg);
+  }
+  50% {
+    transform: translateX(4vmin) scale(0.65) rotate(12deg);
+  }
 }
 
 .flower--5 {
   left: 50%;
   transform: translateX(-6vmin) scale(0.6) rotate(-10deg);
+  -webkit-animation: moving-flower-5 4s linear infinite;
+  animation: moving-flower-5 4s linear infinite;
+}
+
+@-webkit-keyframes moving-flower-5 {
+  0%,
+  100% {
+    transform: translateX(-6vmin) scale(0.6) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(-6vmin) scale(0.6) rotate(-14deg);
+  }
+}
+
+@keyframes moving-flower-5 {
+  0%,
+  100% {
+    transform: translateX(-6vmin) scale(0.6) rotate(-10deg);
+  }
+  50% {
+    transform: translateX(-6vmin) scale(0.6) rotate(-14deg);
+  }
 }
 
 .flower--6 {
   left: 50%;
   transform: translateX(6vmin) scale(0.55) rotate(10deg);
+  -webkit-animation: moving-flower-6 4s linear infinite;
+  animation: moving-flower-6 4s linear infinite;
+}
+
+@-webkit-keyframes moving-flower-6 {
+  0%,
+  100% {
+    transform: translateX(6vmin) scale(0.55) rotate(10deg);
+  }
+  50% {
+    transform: translateX(6vmin) scale(0.55) rotate(14deg);
+  }
+}
+
+@keyframes moving-flower-6 {
+  0%,
+  100% {
+    transform: translateX(6vmin) scale(0.55) rotate(10deg);
+  }
+  50% {
+    transform: translateX(6vmin) scale(0.55) rotate(14deg);
+  }
 }
 
 .flower__leafs {
@@ -2447,5 +2531,25 @@ background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .firefly,
+  .flower,
+  .vase,
+  .flower__grass {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  .flower__leafs {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
   }
 } /*# sourceMappingURL=main.css.map */
